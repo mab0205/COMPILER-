@@ -25,6 +25,25 @@ def agregar(grafo, elemento):
 #funcao para juntar 2 vertices com a Aresta criada 
 def relacionar(grafo, vertice1, vertice2, peso = 1):
     grafo.relaciones[vertice1].append(Aresta(vertice2, peso))
-  
+ 
 def imprimeGrafo(grafo):
        print (grafo.relaciones)
+
+#funcao para criar o Automato e fazer as verificacoes para aceitar as palavras
+def verificaPalvra(grafo, letra, totalPalavras, caso, num,  ultimaLetra,  estadoFinal):
+    
+    for i in range(numEstados):
+
+        if :
+
+        elif :
+
+        elif :
+
+        elif :
+
+    
+
+
+
+
