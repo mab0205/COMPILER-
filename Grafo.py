@@ -17,10 +17,6 @@ class Aresta(object):
         return str(self.elemento) + str(self.peso)
     def __repr__(self): # print a matriz
         return f'->{self.elemento} peso={self.peso}'
-    def getPeso(self):
-        return self.peso
-    def getElemento(self):
-        return self.elemento
  
 #funcao para addicionar um novo vertice ao dictionario 
 def agregar(grafo, elemento):
@@ -32,19 +28,3 @@ def relacionar(grafo, vertice1, vertice2, peso = 1):
   
 def imprimeGrafo(grafo):
        print (grafo.relaciones)
-
-def verificaPalavra(grafo, palavra, estadosFinais):
-    estadosVisitados = []
-    estado = 0
-    for letra in palavra:
-        aux = grafo.relaciones[estado]
-        for aresta in aux:
-            if(aresta.getElemento() in estadosFinais): continue
-            if(letra not in aresta.getPeso()):
-                estadosVisitados.append(aresta.getElemento())
-            else:
-                if(estado in estadosFinais and palavra.index(letra) == len(palavra)-1):
-                    return True
-                estado = aresta.getElemento()
-                break
-        if(len(estadosVisitados) == len(aux)): return False
