@@ -29,20 +29,32 @@ def relacionar(grafo, vertice1, vertice2, peso = 1):
 def imprimeGrafo(grafo):
        print (grafo.relaciones)
 
-#funcao para criar o Automato e fazer as verificacoes para aceitar as palavras
-def verificaPalvra(grafo, letra, totalPalavras, caso, num,  ultimaLetra,  estadoFinal):
-    
-    for i in range(numEstados):
+#verifica se a string é float sem retornar erro. Utilizado para diferenciar tk identificador e tk constante
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
-        if :
-
-        elif :
-
-        elif :
-
-        elif :
-
-    
+ # verifica se a linguagem aceita a palavra
+def verificaPalavra(grafo, palavra, estadosFinais):
+    estadosVisitados = [] # para armazenar os estados em que o caractere/letra nao foi aceito
+    estado = 0 # estado atual
+    for letra in palavra:
+        estadosVisitados.clear()
+        aux = grafo.relaciones[estado] # armazena a lista de arestas do estado atual
+        for aresta in aux: # percorre cada aresta
+            if(letra not in aresta.peso): # se a letra nao foi aceita
+                estadosVisitados.append(aresta.elemento)
+                continue
+            else: # caso a letra é aceita
+                estado = aresta.elemento # troca de estado
+                if(estado in estadosFinais and palavra.index(letra) == len(palavra)-1):
+                    return True # se o estado for final e a letra é a última da palavra, palavra aceita
+                break
+        if(len(estadosVisitados) == len(aux)): return False # caso todas as arestas ja tenham sido visitadas
+    return False   
 
 
 
