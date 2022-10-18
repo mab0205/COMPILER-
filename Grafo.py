@@ -41,7 +41,9 @@ def isfloat(num):
 def verificaPalavra(grafo, palavra, estadosFinais):
     estadosVisitados = [] # para armazenar os estados em que o caractere/letra nao foi aceito
     estado = 0 # estado atual
+    indice = -1 # armazena a posição da lista (indexação) do caractere atual
     for letra in palavra:
+        indice += 1
         estadosVisitados.clear()
         aux = grafo.relaciones[estado] # armazena a lista de arestas do estado atual
         for aresta in aux: # percorre cada aresta
@@ -50,11 +52,11 @@ def verificaPalavra(grafo, palavra, estadosFinais):
                 continue
             else: # caso a letra é aceita
                 estado = aresta.elemento # troca de estado
-                if(estado in estadosFinais and palavra.index(letra) == len(palavra)-1):
+                if(estado in estadosFinais and indice == len(palavra)-1):
                     return True # se o estado for final e a letra é a última da palavra, palavra aceita
                 break
         if(len(estadosVisitados) == len(aux)): return False # caso todas as arestas ja tenham sido visitadas
-    return False   
+
 
 
 
