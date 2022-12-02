@@ -1,11 +1,12 @@
-def verifica_regra(regra,x,cont):
+def verifica_folhas(regra,x):
     for iter in regra:
         if x == iter: 
-            x = None
-            cont += 1
-            return True,cont 
-    
+            return True
 
+def som(x,cont):
+    x = None
+    cont+=1
+    return x, cont
 
 def hola(): 
     #exemplo de entrada para verificar  
@@ -16,7 +17,7 @@ def hola():
     Operando = ["TK_Constante", "TK_Identificador"]
     LOG = ["TK_Maior_Igual","TK_Verifica_Igual","TK_Verifica_Diferente","TK_Maior","TK_Menor","TK_Menor_Igual"]
     While_If = ["TK_While","TK_If"]
-    lista = ["TK_While","TK_If"]
+
     tamLexema = 7
     i = 0
     
@@ -31,27 +32,23 @@ def hola():
                 #print(x)
                 #print(whileLexema[i])
                 if whileLexema[i] == "While_If":
-                    resp, cont = verifica_regra(While_If,x,cont)
+                    resp = verifica_folhas(While_If,x)
                     print("while_if",resp)
-                    print(cont)
+                    x , cont = som(x,cont)                  
                     i+= 1     
                 if whileLexema[i] == "OP":        
                     for op in OP:
                         if op ==  "Operando": 
-                            for perando in Operando:
-                                if x == perando:
-                                    print("True Operando")
-                                    x = None
-                                    cont += 1
-                                    break
+                           if (verifica_folhas(Operando,x) == True):
+                                print("Operando",True)
+                                x , cont = som(x,cont)
+                                break
                         elif op ==  "LOG": 
-                            for log in LOG:
-                                if x == log:
-                                    print("True LOG")
-                                    x = None
-                                    cont += 1
-                                    break
-                    
+                             if (verifica_folhas(LOG,x) == True):
+                                print("LOG",True)
+                                x , cont = som(x,cont)
+                                break
+                             
     if cont == tamLexema : print("Regra da lingaugem: True", cont) 
     else: print("Regra da lingaugem: False", cont)
 
