@@ -1,0 +1,11 @@
+E -> WPOFC
+W -> while | if
+P -> abre
+O -> Q
+Q -> ILI | I
+F -> fecha
+C -> chaves
+L -> igual | diferente | Y
+I -> const | ident
+Y -> maior | menor | Z
+Z -> maigual | meigual 
