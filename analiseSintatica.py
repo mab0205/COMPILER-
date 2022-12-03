@@ -31,7 +31,6 @@ def verificaSimples(exe, lexema, tamLexema):
     try:
         for x in exe:
             if x == lexema[i]:
-                print("True")
                 cont+= 1
                 i+=1
             else: 
@@ -48,24 +47,18 @@ def som(x,cont):
     return x, cont
 
 def lexemaCheck(cont,tamanho):
-     if cont == tamanho : print("Regra da lingaugem: True", cont) 
-     else: print("Regra da lingaugem: False", cont)
+     if cont == tamanho : print("Regra: True", cont) 
+     else: print("Regra: False", cont)
 
 #*********************************REGRAS*****************************************************
 
-
-def read():
-    #exemplo de entrada para verificar  
-    exe = ["TK_Read","TK_Abre_Parenteses","TK_Identificador","TK_Fecha_Parenteses"]
-   
+def read(exe):
     readLexema = ["TK_Read","TK_Abre_Parenteses","TK_Identificador","TK_Fecha_Parenteses"]   
     verificaSimples(exe,readLexema, len(readLexema))
 
-def write():
-    #exemplo de entrada para verificar  
-    exe = ["TK_Write","TK_Abre_Parenteses","TK_Entre_Aspas","Ts"]
-   
+def write(exe): 
     writeLexema = ["TK_Write","TK_Abre_Parenteses","P","TK_Fecha_Parenteses"] 
+    
     P = ["TK_Identificador","TK_Entre_Aspas"] 
     i = 0
     cont = 0
@@ -83,23 +76,17 @@ def write():
                 print("False")
     lexemaCheck(cont,len(writeLexema))
 
-def comentario():
-    exe = ["TK_Comentario"]
-   
+def comentario(exe):
     comentarioLexema = ["TK_Comentario"]   
     verificaSimples(exe,comentarioLexema, len(comentarioLexema))
 
-def fecharChaves():    
-    exe = ["TK_Fecha_Chaves"]
-   
+def fecharChaves(exe):    
     fechaChaveLexema = ["TK_Fecha_Chaves"]   
     verificaSimples(exe,fechaChaveLexema, len(fechaChaveLexema))
 
-def whileIf(): 
-    #exemplo de entrada para verificar  
-    exe = ["TK_If","TK_Abre_Parenteses","TK_Identificador","TK_Menor","TK_Inteiro","TK_Fecha_Parenteses","TK_Abre_Chaves"]
-    
+def whileIf(exe): 
     whileLexema = ["While_If","TK_Abre_Parenteses","OP","TK_Fecha_Parenteses","TK_Abre_Chaves"]
+    
     OP = ["Operando","LOG","Operando"]
     Operando = ["TK_Inteiro", "TK_Identificador", "TK_Flutuante"]
     LOG = ["TK_Maior_Igual","TK_Verifica_Igual","TK_Verifica_Diferente","TK_Maior","TK_Menor","TK_Menor_Igual"]
@@ -108,41 +95,38 @@ def whileIf():
     tamLexema = 7
     i = 0
     
-    print("-----------------------------------------------------")
     cont = 0
     if(len(exe) == tamLexema):
         for x in exe: 
                 if x == whileLexema[i+1] or x == whileLexema[i]:
                     cont +=1
-                    print("True condition")
+                    
                     i+=1 
                 elif x != whileLexema[i]: 
                     #print(x)
                     #print(whileLexema[i])
                     if whileLexema[i] == "While_If":
                         resp = verifica_folhas(While_If,x)
-                        print("while_if",resp)
+                        
                         x , cont = som(x,cont)                  
                         i+= 1     
                     if whileLexema[i] == "OP":        
                         for op in OP:
                             if op ==  "Operando": 
                                 if (verifica_folhas(Operando,x)):
-                                    print("Operando",True)
+                                    
                                     x , cont = som(x,cont)
                                     break
                             elif op ==  "LOG": 
                                 if (verifica_folhas(LOG,x)):
-                                    print("LOG",True)
+                                    
                                     x , cont = som(x,cont)
                                     break
     lexemaCheck(cont,tamLexema)
 
-def operacaoIdentificador2():
-   #exemplo de entrada para verificar  
-    exe = ["TK_Identificador","TK_Incrementa_Um"]
-    
+def operacaoIdentificador2(exe): 
     identificadorLexema2 = ["TK_Identificador","M"]
+    
     M = ["TK_Incrementa_Um","TK_Decrementa_Um"]
     i = 0
     cont = 0
@@ -160,11 +144,9 @@ def operacaoIdentificador2():
                 print("False")
     lexemaCheck(cont,len(identificadorLexema2))
 
-def operacaoIdentificador3():
-   #exemplo de entrada para verificar  
-    exe = ["TK_Identificador","TK_Atribui_Valor","TK_Identificador"]
-    
+def operacaoIdentificador3(exe): 
     identificadorLexema3 = ["TK_Identificador","TK_Atribui_Valor","M"]
+    
     M = ["TK_Flutuante","TK_Inteiro","TK_Identificador"]
     i = 0
     cont = 0
@@ -182,85 +164,66 @@ def operacaoIdentificador3():
                 print("False")
     lexemaCheck(cont,len(identificadorLexema3))
 
-def operacaoIdentificador5(): 
-    exe = ["TK_Identificador","TK_Atribui_Valor","TK_Identificador","TK_Soma","TK_Flutuante"]
+def operacaoIdentificador5(exe): 
+    identLexema5 = ["TK_Identificador","TK_Atribui_Valor","OP"]
     
-    whileLexema = ["TK_Identificador","TK_Atribui_Valor","OP"]
     OP = ["Operando","SIMMAT","Operando2"]
     Operando = ["TK_Flutuante", "TK_Inteiro","TK_Identificador"]
-    Operando2 = ["TK_Flutuante", "TK_Inteiro"]
+    Operando2 = ["TK_Flutuante", "TK_Inteiro","TK_Identificador"]
     SIMMAT = ["TK_Soma","TK_Subtracao","TK_Multiplicacao","TK_Mod","TK_Divisao"]
 
     tamLexema = 5
     i = 0
     
-    print("-----------------------------------------------------")
     cont = 0
     if(len(exe) == tamLexema):
         for x in exe: 
-                if x == whileLexema[i]:
+                if x == identLexema5[i]:
                     cont +=1
-                    print("True condition")
                     i+=1 
-                elif x != whileLexema[i]: 
+                elif x != identLexema5[i]: 
                     #print(x)
                     #print(whileLexema[i])
-                    if whileLexema[i] == "OP":        
+                    if identLexema5[i] == "OP":        
                         for op in OP:
                             if op ==  "Operando": 
                                 if (verifica_folhas(Operando,x)):
-                                    print("Operando",True)
+                                    
                                     x , cont = som(x,cont)
                                     break
                             if op ==  "Operando2": 
-                                if (verifica_folhas(Operando,x)):
-                                    print("Operando2",True)
+                                if (verifica_folhas(Operando2,x)):
+                                    
                                     x , cont = som(x,cont)
                                     break    
                             elif op ==  "SIMMAT": 
                                 if (verifica_folhas(SIMMAT,x)):
-                                    print("SIMMAT",True)
+                                    
                                     x , cont = som(x,cont)
                                     break
     lexemaCheck(cont,tamLexema)
 
-def atribuiInt():
-    exe = ["TK_Int","TK_Identificador","TK_Atribui_Valor","TK_Inteiro"]
-    
+def atribuiInt(exe):
     intLexema = ["TK_Int","TK_Identificador"]
     intLexema2 = ["TK_Int","TK_Identificador","TK_Atribui_Valor","OP"]
+    
     OP =  ["TK_Inteiro","TK_Identificador"]
 
     casoAtribucao(exe, intLexema, intLexema2, OP)
 
-def atribuiFloat():
-    exe = ["TK_Flutuante","TK_Identificador","TK_Atribui_Valor","TK_Flutuante"]
+def atribuiFloat(exe):
+    floatLexema = ["TK_Float","TK_Identificador"]
+    floatLexema2 = ["TK_Float","TK_Identificador","TK_Atribui_Valor","OP"]
     
-    floatLexema = ["TK_Flutuante","TK_Identificador"]
-    floatLexema2 = ["TK_Flutuante","TK_Identificador","TK_Atribui_Valor","OP"]
     OP =  ["TK_Flutuante","TK_Identificador"]
 
     casoAtribucao(exe, floatLexema, floatLexema2, OP)
 
-def atribuiString():
-    exe = ["TK_String","TK_Identificador","TK_Atribui_Valor","TK_Identificador"]
-    
+def atribuiString(exe):
     stringLexema = ["TK_String","TK_Identificador"]
     stringLexema2 = ["TK_String","TK_Identificador","TK_Atribui_Valor","OP"]
+    
     OP =  ["TK_Entre_Aspas","TK_Identificador"]
 
     casoAtribucao(exe, stringLexema, stringLexema2, OP)
 
-
-if __name__ == "__main__":
-    #write()
-    #read() 
-    whileIf() 
-    #comentario()
-    #fecharChaves()
-    #operacaoIdentificador2()
-    #operacaoIdentificador3()
-    #atribuiInt()
-    #atribuiFloat()
-    #atribuiString()
-    #operacaoIdentificador5()

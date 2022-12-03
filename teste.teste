@@ -1,7 +1,4 @@
-123.233
-if ( x = 1 ) {
-int x = 10 
-x = x + 1
+\\ asdfasdfsdaf
+while ( x < 10 ) {
+x = x + 1 
 }
-y = 0
-y = y + 2
