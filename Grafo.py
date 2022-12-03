@@ -42,6 +42,15 @@ def verificaPalavra(grafo, palavra, estadosFinais):
     estadosVisitados = [] # para armazenar os estados em que o caractere/letra nao foi aceito
     estado = 0 # estado atual
     indice = -1 # armazena a posição da lista (indexação) do caractere atual
+
+    if palavra[0] == "\"":# caso for uma cadeia de caracteres (string)
+        letra = palavra[1]
+        for letra in palavra:
+            indice += 1# ignora as informações dentro das aspas
+            if letra == "\"" and indice == len(palavra)-1:# se terminar em fecha aspas, palavra aceita
+                return True
+        return False
+
     for letra in palavra:
         indice += 1
         estadosVisitados.clear()
