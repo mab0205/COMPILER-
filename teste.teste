@@ -1,8 +1,1 @@
-\\ asdfasdfsdaf
-while ( x < 1123456789 ) {
-x = x + 1 
-write ( x )
-y = 10
-v = 1 
-y = v + x
-}
+write  x )
