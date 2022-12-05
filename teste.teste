@@ -1,6 +1,8 @@
-while ( y + 1 ) {
+while ( y < 1 ) {
 }
 int x = y
-string c = 123.234
-p = "adsf"
-write (  )
+string c = "hola"
+p = 1234
+write ( x )
+while ( y > 1 ) {
+read ( x )
