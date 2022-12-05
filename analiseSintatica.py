@@ -11,13 +11,13 @@ def casoAtribucao(exe, Lexema, Lexema2, OP, linha, tipo):
                     cont+=1
                     i+=1
                 else: 
-                    print("Erro: Espera-se"+Lexema2[i]+" "+tipo)
+                    print("Erro: Espera-se "+Lexema2[i]+" "+tipo)
                     return lexemaCheck(cont,len(Lexema2),linha)
             elif x == Lexema2[i]:
                 cont+=1
                 i+=1
             else :
-                print("Erro: Espera-se",Lexema2[i])
+                print("Erro: Espera-se ",Lexema2[i])
                 return lexemaCheck(cont,len(Lexema2),linha)
             
         return lexemaCheck(cont,len(Lexema2),linha)
@@ -38,7 +38,7 @@ def verificaSimples(exe, lexema, tamLexema, linha):
                 cont+= 1
                 i+=1
             else: 
-                print("Erro: Espera-se",lexema[i])
+                print("Erro: Espera-se ",lexema[i])
                 return lexemaCheck(cont,tamLexema,linha)
     except:
         cont = None
@@ -81,13 +81,13 @@ def write( exe,linha):
                         cont+=1
                         i+=1
                     else:
-                        print("Erro: Espera-se",writeLexema[i])
+                        print("Erro: Espera-se ",writeLexema[i])
                         return lexemaCheck(cont,len(writeLexema),linha)
             elif x == writeLexema[i]:
                 cont+=1
                 i+=1
             else :
-                print("Erro: Espera-se",writeLexema[i])
+                print("Erro: Espera-se ",writeLexema[i])
                 return lexemaCheck(cont,len(writeLexema),linha)
     return lexemaCheck(cont,len(writeLexema),linha)
 
@@ -136,7 +136,7 @@ def whileIf(exe,linha):
                                     j+=1
                                     x = exe[j] 
                                 else: 
-                                    print("Erro: Espera-se:", Operando)
+                                    print("Erro: Espera-se: ", Operando)
                                     return lexemaCheck(cont,tamLexema, linha)    
                             elif op ==  "LOG": 
                                 if (verifica_folhas(LOG,x)):
@@ -145,10 +145,10 @@ def whileIf(exe,linha):
                                     j+=1
                                     x = exe[j]
                                 else: 
-                                    print("Erro: Espera-se:", LOG) 
+                                    print("Erro: Espera-se: ", LOG) 
                                     return lexemaCheck(cont,tamLexema, linha)  
                     elif x != whileLexema[i] :
-                        print ("Erro: Espera-se:", whileLexema[i]) 
+                        print ("Erro: Espera-se: ", whileLexema[i]) 
                         return lexemaCheck(cont,tamLexema, linha)       
             except: 
                 return lexemaCheck(cont,tamLexema, linha)
@@ -167,13 +167,13 @@ def operacaoIdentificador2(exe,linha):
                     cont+=1
                     i+=1
                 else:
-                    print("Erro: Espera-se",identificadorLexema2[i])
+                    print("Erro: Espera-se ",identificadorLexema2[i])
                     return lexemaCheck(cont,len(identificadorLexema2),linha)
             elif x == identificadorLexema2[i]:
                 cont+=1
                 i+=1
             else :
-                print("Erro: Espera-se",identificadorLexema2[i])
+                print("Erro: Espera-se ",identificadorLexema2[i])
                 return lexemaCheck(cont,len(identificadorLexema2),linha)
     return lexemaCheck(cont,len(identificadorLexema2),linha)
 
@@ -190,13 +190,13 @@ def operacaoIdentificador3(exe, linha):
                     cont+=1
                     i+=1
                 else:
-                    print("Erro: Espera-se",identificadorLexema3[i])
+                    print("Erro: Espera-se ",identificadorLexema3[i])
                     return lexemaCheck(cont,len(identificadorLexema3),linha)
             elif x == identificadorLexema3[i]:
                 cont+=1
                 i+=1
             else :
-                print("Erro: Espera-se",identificadorLexema3[i])
+                print("Erro: Espera-se ",identificadorLexema3[i])
                 return lexemaCheck(cont,len(identificadorLexema3),linha)
     return lexemaCheck(cont,len(identificadorLexema3),linha)
 
@@ -233,7 +233,7 @@ def operacaoIdentificador5(exe, linha):
                                     j+=1
                                     x = exe[j] 
                                 else: 
-                                    print("Erro: Espera-se:", Operando)
+                                    print("Erro: Espera-se: ", Operando)
                                     return lexemaCheck(cont,tamLexema, linha) 
                             elif op ==  "SIMMAT": 
                                 if (verifica_folhas(SIMMAT,x)):
@@ -242,10 +242,10 @@ def operacaoIdentificador5(exe, linha):
                                     j+=1
                                     x = exe[j]
                                 else: 
-                                    print("Erro: Espera-se:", SIMMAT) 
+                                    print("Erro: Espera-se: ", SIMMAT) 
                                     return lexemaCheck(cont,tamLexema, linha) 
                     elif x != identLexema5[i] :
-                        print ("Erro: Espera-se:", identLexema5[i]) 
+                        print ("Erro: Espera-se: ", identLexema5[i]) 
                         return lexemaCheck(cont,tamLexema, linha)
                                 
             except:                    
