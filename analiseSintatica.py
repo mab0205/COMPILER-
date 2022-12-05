@@ -7,7 +7,7 @@ def casoAtribucao(exe, Lexema, Lexema2, OP, linha, tipo):
     elif(len(exe) == 4):
         for x in exe:
             if x != Lexema2[i]and Lexema2[i] == "Operador":
-                if( verifica_folhas(OP,x)):
+                if(verifica_folhas(OP,x)):
                     cont+=1
                     i+=1
                 else: 
