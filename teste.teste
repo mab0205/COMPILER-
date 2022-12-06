@@ -1,8 +1,15 @@
-while ( y < 1 ) {
-}
-int x = 1 
-string c = "hola"
-p = 1234
-write ( x )
-while ( y > 1 ) {
-read ( x )
+int x = 34
+int w 
+float y = x
+float y
+string h = "Hola Mundo"
+string r
+y = h
+w = 2 + 3
+w = 9
+w ++
+float c = h
+l = 10
+y = x
+x = "asdfadsf"
+x = "asaadf"

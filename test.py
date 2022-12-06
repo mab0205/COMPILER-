@@ -1,11 +1,8 @@
-dic = {
-         'X': ['TK_Identificador_1'],
+tabelaIdentifiacores = {}
+tabelaIdentifiacores["X"] = ["string","123", 1, 1]
 
-}
+tabelaIdentifiacores["X"][1] = 54
+print(tabelaIdentifiacores["X"][1])
 
-dic["X"].append("string")
-print(dic["X"][1])
-dic.append("hola")
-print()
 
 

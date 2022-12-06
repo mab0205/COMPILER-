@@ -3,7 +3,7 @@ def casoAtribucao(exe, Lexema, Lexema2, OP, linha, tipo):
     i = 0
     cont = 0
     if (len(exe) == 2):
-        verificaSimples(exe, Lexema, len(Lexema), linha) 
+        return verificaSimples(exe, Lexema, len(Lexema), linha) 
     elif(len(exe) == 4):
         for x in exe:
             if x != Lexema2[i]and Lexema2[i] == "Operador":
@@ -178,15 +178,15 @@ def operacaoIdentificador2(exe,linha):
     return lexemaCheck(cont,len(identificadorLexema2),linha)
 
 def operacaoIdentificador3(exe, linha): 
-    identificadorLexema3 = ["TK_Identificador","TK_Atribui_Valor","M"]
+    identificadorLexema3 = ["TK_Identificador","TK_Atribui_Valor","variavel_Valida"]
     
-    M = ["TK_Flutuante","TK_Inteiro","TK_Identificador"]
+    variavel_Valida = ["TK_Flutuante","TK_Inteiro","TK_Identificador","TK_Entre_Aspas"]
     i = 0
     cont = 0
     if(len(exe)==len(identificadorLexema3)):
         for x in exe:
-            if x != identificadorLexema3[i] and  identificadorLexema3[i] == "M":
-                if( verifica_folhas(M,x)):
+            if x != identificadorLexema3[i] and  identificadorLexema3[i] == "variavel_Valida":
+                if( verifica_folhas(variavel_Valida,x)):
                     cont+=1
                     i+=1
                 else:
