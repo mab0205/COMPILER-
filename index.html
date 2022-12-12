@@ -7,31 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - numpy 
+        - paths:
+            - /Grafo.py
+            - /analiseSintatica.py
+            - /main2.py
+            - /analiseLexicaScanner.py
+    </py-env>
+
 </head>
 <body>
     <div class = "wrapper">
         <textarea type="text" id="test-input">While</textarea>
         <textarea id="test-output"></textarea>
-        <py-repl></py-repl>
-        <button id="submit-button" class = "save-py" pys-onClick="my_function">Compilar</button>
-        <py-env > </py-env> 
+        <button id="submit-button" class = "save-py" pys-onClick="my_function">Compilar</button> 
     </div>
 
     <py-script>
         from js import console
-        
+        from main2 import main
         def my_function(*args, **kwargs):
-        
-            #console.log(f'args: {args}')
-            #console.log(f'kwargs: {kwargs}')
             text = Element('test-input').element.value
             lista = text.splitlines()
+            lista2 = []
+            lista2 = main(lista)
         
-            #print('text:', text[0])
-            console.log(f'text: {text[0]}')
-        
-            Element('test-output').element.innerText = lista
-            
+            #console.log(f'text: {text[0]}') 
+            Element('test-output').element.innerText = lista2
 
         </py-script>
 </body>

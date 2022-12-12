@@ -1,12 +1,10 @@
-int x 
-int u
+int x = 02
+int u = 05 
 float y = 2.43
 string hola = "asdf"
-while ( x < 12 ) {
-if ( x > 12 ) {
-if ( x > 12 ) {
-x = u + x
+x + 10 
 x++
-}
-}
-}
+write ( x )
+write ( y )
+write ( hola )
+write ( o )

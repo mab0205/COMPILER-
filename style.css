@@ -9,7 +9,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aquamarine;
+    background-color: rgb(127, 246, 255);
 }
 .wrapper textarea{
     height: 350px;
@@ -21,7 +21,7 @@ body{
 .wrapper{
     width: 450px;
     padding: 100px;
-    background-color: #fff;
+    background-color: rgb(31, 30, 30);
     
 }
 .save-py{
