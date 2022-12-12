@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+}
+.wrapper textarea{
+    height: 350px;
+    resize: none;
+    padding: 8px 13px;
+    border: 1px solid #ccc;
+    background-color: rgb(210, 204, 204);
+}
+.wrapper{
+    width: 450px;
+    padding: 100px;
+    background-color: #fff;
+    
+}
+.save-py{
+    display: flex;
+    width: 200px;
+    border-radius: 7px;
+    background-color: bisque;
+}
+
+#btnRun{
+    display: none;
+}

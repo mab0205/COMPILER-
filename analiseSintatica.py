@@ -53,6 +53,7 @@ def lexemaCheck(cont,tamanho,linha):
      if cont == tamanho : 
         return True 
      else: 
+        print("cont",cont)
         print("Erro Regra Sintatica– Linha:", linha)
         return False
 
@@ -93,7 +94,10 @@ def write( exe,linha):
 
 def fecharChaves(exe,linha):  
     fechaChaveLexema = ["TK_Fecha_Chaves"]   
-    return verificaSimples(exe,fechaChaveLexema, len(fechaChaveLexema),linha)
+    if exe[0] == "TK_Fecha_Chaves" and len(exe) == len(fechaChaveLexema):
+        return True
+    else:
+        return lexemaCheck(0,len(fechaChaveLexema),linha)
 
 def whileIf(exe,linha): 
     whileLexema = ["While_If","TK_Abre_Parenteses","OP","TK_Fecha_Parenteses","TK_Abre_Chaves"]

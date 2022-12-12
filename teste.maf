@@ -1,0 +1,21 @@
+int x = 12
+float y = 34.43
+string asdfg 
+while ( x > 12 ) {
+int k 
+float w
+k = 5432 
+w = k
+k = w
+w = "hola"
+w = 12.32
+x = 69
+int q = w
+int l = q * 2
+string z = k
+l = 123
+\\ ejemplo de comentario
+int y
+int qwe = 7654
+k ++
+}

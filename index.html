@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+    <div class = "wrapper">
+        <textarea type="text" id="test-input">While</textarea>
+        <textarea id="test-output"></textarea>
+        <py-repl></py-repl>
+        <button id="submit-button" class = "save-py" pys-onClick="my_function">Compilar</button>
+        <py-env > </py-env> 
+    </div>
+
+    <py-script>
+        from js import console
+        
+        def my_function(*args, **kwargs):
+        
+            #console.log(f'args: {args}')
+            #console.log(f'kwargs: {kwargs}')
+            text = Element('test-input').element.value
+            lista = text.splitlines()
+        
+            #print('text:', text[0])
+            console.log(f'text: {text[0]}')
+        
+            Element('test-output').element.innerText = lista
+            
+
+        </py-script>
+</body>
+</html>
