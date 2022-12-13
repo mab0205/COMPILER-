@@ -33,11 +33,6 @@ def divideLexemas(lexema, contColumnas, tabelaSimbolos):
                 lexema.remove(palavra)
                 break
     
-    for palavra in lexema: # ajusta o ponto e virgula para o final da lista
-        if palavra == ";":
-            lexema.append(palavra)
-            lexema.remove(palavra)
-            break
 
     return lexema
 

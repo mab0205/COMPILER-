@@ -1,4 +1,5 @@
 int Ñ 
+int r = A
 int x = 10
 float y = "hola"
 string h = y

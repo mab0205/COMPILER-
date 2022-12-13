@@ -286,6 +286,7 @@ def main(arquivo):
             tokens_lexema.clear()
     print(tabelaIdentificadores)
     if contColchetes != 0:
+            listaSaida.append("Erro Semantico: Nao foi fechado: {}".format(contColchetes))
             print("Erro Semantico: Nao foi fechado: ",contColchetes, "colchetes")
     #print(tabelaSimbolos)
     print("Numero de linhas do Codigo: {}".format(contLinhas))
