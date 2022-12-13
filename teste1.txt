@@ -1,0 +1,13 @@
+int x = 10
+float y = 2.5
+string h = y
+string j = "hola"
+int k = j
+float a = x 
+int q = y
+\\ comentario 
+write ( x )
+write ( y )
+write ( h )
+write ( j )
+write ( k )

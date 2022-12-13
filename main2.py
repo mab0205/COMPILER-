@@ -18,16 +18,20 @@ alfabeto = []
 listaSaida = []
 
 # Ajuste do numero de estados para criar o automato
+# VARAIBLES GLOBALES
+tamanhoAlfabeto = len(string.printable)
+alfabeto = []
+# Ajuste do numero de estados para criar o automato
 numEstados = 29 #son 28 estados en total pero como el rango de [0;28] tiene que se x<41
 estadosList = [i for i in range(numEstados)]
-
-
 
 def criaAlfabeto():
     alfabeto.extend(string.printable)  #cria uma nova lista contendo o alfabeto
 
 estadosFinais=[1,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,28]
 
+##################################LEITRUA E TABELA DE SIMBOLOS ############################################
+################################## AUTOMATOO ###############################################################
 def criaAutomato(grafo): 
     
     for x in range(numEstados): agregar(grafo, estadosList[x]) # Cria o grafo de 40 estados
@@ -73,75 +77,21 @@ def criaAutomato(grafo):
     relacionar(grafo, estadosList[27], estadosList[28], '"')
 
 
-
+#####################################################ANALISE LEXICA ############################
 # importa as funcoes 
 from analiseLexicaScanner import *
 
+####################################################RECUPERACAO DE ERROS##################################
 def Erro(tipo, X, Y, erro):
     if tipo == "Lexico":
         print("[Erro: Análise {}]: símbolo incorreto na linha {}, coluna {}. O símbolo {} não pertence ao alfabeto da linguagem.".format(tipo, X, Y, erro))
-    
-    #print("[Erro: Análise Léxica]: símbolo incorreto na linha X, coluna Y. O variavel “@” não pertence ao alfabeto da linguagem.")
+        global listaSaida 
+        listaSaida.append("[Erro: Análise {}]: símbolo incorreto na linha {}, coluna {}. O símbolo {} não pertence ao alfabeto da linguagem.".format(tipo, X, Y, erro))
 
+########################################################SEMANTICA ####################################################
+from analiseSemanticaOptimizacao import *
 
-def insereVariavel(nome,tipo,escopo,linha,valor):
-    global tabelaIdentificadores
-    if (valor != None and verificaVariavel(valor) == False and tipo != "String"):
-         return print("Erro Semantico: variavel nao declarada: ",valor) 
-    elif nome in tabelaIdentificadores:
-        return print("Erro Semantico: Duas vezes declarada a variavel: "+nome+" na linha: ",linha)
-    
-    tabelaIdentificadores[nome] = [tipo,atribuicaoVariavel(nome,valor,tipo), escopo, linha]
-    return True 
-
-def verificaVariavel(x):
-    global tabelaIdentificadores
-    if((x.isdigit() or isfloat(x) or (x in tabelaIdentificadores)) == False):
-        return False 
-    else:
-        return True
-
-def atribuicaoVariavel(nome,x,tipo):
-    if (x in tabelaIdentificadores and tabelaIdentificadores[x][0] == tipo):
-        return tabelaIdentificadores[x][1]
-    else:
-        try:
-            if tabelaIdentificadores[x][0] != tipo:
-                print("Tramento de Erro - Warning: Tipos incompativeis, foi assinado a '"+nome+ "' o valor None")
-                return None
-        except: 
-            return x
-
-def verificaTipo(x,y):
-    if(tabelaIdentificadores[x][0] == "Inteiro" and y.isdigit()):
-        return True
-    elif(tabelaIdentificadores[x][0] == "Float" and isfloat(y)):
-        return True
-    elif(tabelaIdentificadores[x][0] == "String" and str(y)):
-        return True
-    elif ((y in tabelaIdentificadores)):
-        if(tabelaIdentificadores[x][0] == tabelaIdentificadores[y][0]):
-            return True
-    else : return False 
-
-def verificaWhileIf(x,y):
-    if(tabelaIdentificadores[x][0] == "Inteiro" and y.isdigit()):
-        return True
-    elif(tabelaIdentificadores[x][0] == "Float" and isfloat(y)):
-        return True
-    elif(tabelaIdentificadores[x][0] == "String" and str(y)):
-        return False
-    elif ((y in tabelaIdentificadores)):
-        if(tabelaIdentificadores[x][0] == tabelaIdentificadores[y][0]):
-            return True
-    else : return False
-
-def erroSemantico(linha):
-    global listaSaida 
-    listaSaida.append("Erro Semantico: variavel na linha: {}".format(linha))
-    return print("Erro Semantico: variavel na linha: ",linha)
-
-
+########################################## ANALISE SINTATICA ####################################
 
 def Sintatica(tokens_lexema,contLinhas,listaLexema):
         global tabelaIdentificadores 
@@ -167,23 +117,23 @@ def Sintatica(tokens_lexema,contLinhas,listaLexema):
         elif((tokens_lexema[0] == 'TK_Int') and atribuiInt(tokens_lexema,contLinhas) ):
             #print(atribuiInt(tokens_lexema,contLinhas))
             if len(tokens_lexema) == 4:
-                insereVariavel(listaLexema[1],"Inteiro",1,contLinhas,listaLexema[3])
+                insereVariavel(listaLexema[1],"Inteiro",contColchetes,contLinhas,listaLexema[3])
             else:
-                insereVariavel(listaLexema[1],"Inteiro",1,contLinhas,None)
+                insereVariavel(listaLexema[1],"Inteiro",contColchetes,contLinhas,None)
             
         elif((tokens_lexema[0] == 'TK_Float') and atribuiFloat(tokens_lexema,contLinhas)):
             #print(atribuiFloat(tokens_lexema,contLinhas))
             if len(tokens_lexema) == 4:
-                insereVariavel(listaLexema[1],"Float",1,contLinhas,listaLexema[3])
+                insereVariavel(listaLexema[1],"Float",contColchetes,contLinhas,listaLexema[3])
             else:
-                insereVariavel(listaLexema[1],"Float",1,contLinhas,None)     
+                insereVariavel(listaLexema[1],"Float",contColchetes,contLinhas,None)     
            
         elif((tokens_lexema[0] == 'TK_String') and atribuiString(tokens_lexema,contLinhas)):
             #print(atribuiString(tokens_lexema,contLinhas))
             if len(tokens_lexema) == 4:
-                insereVariavel(listaLexema[1],"String",1,contLinhas,listaLexema[3])
+                insereVariavel(listaLexema[1],"String",contColchetes,contLinhas,listaLexema[3])
             else:
-                insereVariavel(listaLexema[1],"String",1,contLinhas,None)  
+                insereVariavel(listaLexema[1],"String",contColchetes,contLinhas,None)  
              
         elif((tokens_lexema[0] == 'TK_Write') and write(tokens_lexema,contLinhas)):
             if( verificaVariavel(listaLexema[2]) or (tokens_lexema[2] == "TK_Entre_Aspas")): 
@@ -194,7 +144,7 @@ def Sintatica(tokens_lexema,contLinhas,listaLexema):
             
         elif((tokens_lexema[0] == 'TK_Read') and read(tokens_lexema,contLinhas) ):
             if( verificaVariavel(listaLexema[2]) ): 
-                ejecutable = listaLexema[2]
+                listaSaida.append("Variavel lida corretamente: {}".format(listaLexema[2]))
                 # ler um arquivo executavel  
             else :
                 return erroSemantico(contLinhas)
@@ -216,30 +166,43 @@ def Sintatica(tokens_lexema,contLinhas,listaLexema):
                         tabelaIdentificadores[listaLexema[0]][1] = tabelaIdentificadores[listaLexema[2]][1]
                     except:
                         tabelaIdentificadores[listaLexema[0]][1] = listaLexema[2]
-                else: 
-                    return erroSemantico(contLinhas)
+                else:
+                    try:
+                       tabelaIdentificadores[listaLexema[0]][1] = atribuicaoVariavel(listaLexema[0],listaLexema[2],tabelaIdentificadores[listaLexema[0]][0]) 
+                    except : return erroSemantico(contLinhas)
                 
             elif((len(tokens_lexema) == 5) and operacaoIdentificador5(tokens_lexema,contLinhas)):
                 #print(operacaoIdentificador5(tokens_lexema,contLinhas))
                 #///////////////////////////////////////////////////////////////////////////////////////////////////
                 if listaLexema[0] in tabelaIdentificadores:
                     if( verificaTipo(listaLexema[0],listaLexema[2]) and (verificaTipo(listaLexema[0],listaLexema[4]))):
-                        print("aceptoooo")
                         #programar atribucion y optimizacion del codigo 
+                        if((listaLexema[2] in tabelaIdentificadores) and (listaLexema[4] in tabelaIdentificadores)): 
+                            tabelaIdentificadores[listaLexema[0]][1] =  operacaoMat(int(tabelaIdentificadores[listaLexema[2]][1]),int(tabelaIdentificadores[listaLexema[4]][1]),listaLexema[3])
+                        elif (listaLexema[2] in tabelaIdentificadores):
+                            tabelaIdentificadores[listaLexema[0]][1] = operacaoMat(int(tabelaIdentificadores[listaLexema[2]][1]),int(listaLexema[4]),listaLexema[3])  
+                        elif (listaLexema[4] in tabelaIdentificadores):
+                            tabelaIdentificadores[listaLexema[0]][1] = operacaoMat(int(tabelaIdentificadores[listaLexema[4]][1]),int(listaLexema[2]),listaLexema[3])    
+                        else: 
+                            tabelaIdentificadores[listaLexema[0]][1] = operacaoMat(int(listaLexema[2]),int(listaLexema[4]),listaLexema[3])
+                        
+                        listaSaida.append(tabelaIdentificadores[listaLexema[0]][1] )
                     else: 
-                        print("verga")
                         return erroSemantico(contLinhas)
                 else: 
                         return erroSemantico(contLinhas)
-            else: print("Erro Regra Sintatica: Na atribuicao de variavel ")
+            else: 
+                listaSaida.append("Erro Regra Sintatica: Na atribuicao de variavel")
+                print("Erro Regra Sintatica: Na atribuicao de variavel ")
         else:
+            listaSaida.append("Erro Regra Sintaticadddd– Linha: {}".format(contLinhas))
             print("Erro Regra Sintaticadddd– Linha:",contLinhas)
 
 
 def tem_numero(s):
     return any(char.isdigit() for char in s)
 
-
+############################################## MAIN ############################################
 def main(arquivo):
     global listaSaida 
     criaAlfabeto()
@@ -274,10 +237,11 @@ def main(arquivo):
             if "\\" in linha:
                 if linha.startswith("\\"): continue
                 linha = linha[0:linha.index("\\")]
-
-            if "\"" in linha:# a função elimina os espaços dentro da cadeia que esta estre aspas antes do
-                linha = entreAspas(linha, contLinhas)# split abaixo para que a cadeia nao fique fragmentada
-            
+            try:
+                if "\"" in linha:# a função elimina os espaços dentro da cadeia que esta estre aspas antes do
+                    linha = entreAspas(linha, contLinhas)# split abaixo para que a cadeia nao fique fragmentada
+            except:
+                continue
             lexema = linha.split()
             lista = divideLexemas(lexema, contColumnas, tabelaSimbolos)
             
@@ -326,7 +290,3 @@ def main(arquivo):
     #print(tabelaSimbolos)
     print("Numero de linhas do Codigo: {}".format(contLinhas))
     return listaSaida
-
-
-#if __name__ == "__main__":
-    #main(1)

@@ -1,10 +1,12 @@
-int x = 02
-int u = 05 
+int x = 2
+int u = 5 
 float y = 2.43
 string hola = "asdf"
-x + 10 
+x = hola
 x++
+while ( u > 2 ) {
+int l = 10 
+}
 write ( x )
 write ( y )
 write ( hola )
-write ( o )

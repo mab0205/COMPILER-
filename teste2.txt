@@ -1,6 +1,11 @@
+int x = 123 
 if ( x > 12 ) {
+int c 
 while ( x > 12 ) {
+int y 
 if ( x > 12 ) {
+int z
 }
 }
 }
+int h 

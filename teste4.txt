@@ -1,0 +1,16 @@
+\\ test4
+int x = 12
+float y = 34.43
+string asdfg 
+x = y
+while ( x > 12 ) {
+int k 
+k = 5432 
+int l = 123
+x = x + l
+k = k + 16
+l = k + x
+write ( x )
+write ( k )
+write ( l )
+}

@@ -1,0 +1,14 @@
+int Ñ 
+int x = 10
+float y = "hola"
+string h = y
+string j = "hola"
+int k = j
+float a = x 
+int q = y
+x = "xd"
+write ( x )
+write ( y )
+write ( h )
+write ( j )
+write ( k )

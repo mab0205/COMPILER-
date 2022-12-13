@@ -1,0 +1,14 @@
+int x = 2
+int u = 5 
+float y = 2.43
+string hola = "asdf"
+x = hola
+u = u + "jl"
+x @
+while ( u + 2 ) {
+int l = 10 
+\\comentario
+write ( x )
+write ( y )
+write ( hola )
+write ( o )
